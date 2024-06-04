@@ -5,7 +5,7 @@ import "fmt"
 //handle putting in any arbitrary data into storage
 //fetch will return data and error
 type Storer interface {
-	Push([]byte) error
+	Push([]byte) (int, error)
 	Fetch(int) ([]byte, error)
 }
 
@@ -20,9 +20,9 @@ func NewMemoryStore() *MemoryStore {
 	}
 }
 
-func (s *MemoryStore) Push(b []byte) error {
+func (s *MemoryStore) Push(b []byte) (int, error) {
 	s.data = append(s.data, b)
-	return nil
+	return len(s.data), nil
 }
 
 func (s *MemoryStore) Fetch(offset int) ([]byte, error) {
