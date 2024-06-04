@@ -1,5 +1,5 @@
-run:
-		@./bin/gstream
+run: build
+	@./bin/gmq
 
 build:
-		go build -o bin/gstream
+	@go build -o bin/gmq
