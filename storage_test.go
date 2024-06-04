@@ -8,7 +8,8 @@ import (
 func TestStorage(t *testing.T) {
 	s := NewMemoryStore()
 	for i := 0; i < 100; i++ {
-		latestOffset, err := s.Push([]byte("foobarbaz"))
+		key := fmt.Sprint("foobarbaz_%d", i)
+		latestOffset, err := s.Push([]byte(key))
 		if err != nil {
 			t.Error(err)
 		}
